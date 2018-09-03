@@ -50,7 +50,7 @@ Then, I polyfit the waypoints to calculate the coefficents of the curve. I choos
 
 ### Model Predictive Control with Latency
 
-I've taken the latency into account by predicting the future state of the vehicle using the velocity, psi angle, x position, position of the car using the MPC equations. See line 109 to line 116 in main.cpp.
+I've taken the latency into account by predicting the future state of the vehicle using the velocity, psi angle, x position, y position of the car using the MPC equations. See line 109 to line 116 in main.cpp.
 
 ## Dependencies
 
