@@ -2,6 +2,51 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## Implementation
+
+### The Model
+
+ * The state includes the x position, y position, psi angle, velocity, cross track error and psi error.
+ * The actuators include the throttle(-1,stand for full breaking, to 1, stand for full accelerating) and steering(-25 degrees to 25 degrees).
+ * The update equations for the model:
+     '''
+     x_[t+1] = x[t] + v[t] * cos(psi[t]) * dt
+     y_[t+1] = y[t] + v[t] * sin(psi[t]) * dt
+     psi_[t+1] = psi[t] + v[t] / Lf * delta[t] * dt
+     v_[t+1] = v[t] + a[t] * dt
+     cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
+     epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
+     '''
+
+### Timestep Length and Elapsed Duration (N & dt)
+
+I Choose N = 10, dt = 0.1, the values come from the class.
+
+The prediction horizon is the duration over which future predictions are made. We’ll refer to this as T.
+
+T is the product of two other variables, N and dt.
+
+N is the number of timesteps in the horizon.
+
+dt is how much time elapses between actuations.
+
+For example, if N were 20 and dt were 0.5, then T would be 10 seconds.
+
+T should be as large as possible to predict more further.
+
+While dt should be as small as possible to predict more accurate.
+
+So that N should be as large as possible. But it needs more time to computer when N is too large. So it a trade-off.
+
+### Polynomial Fitting and MPC Preprocessing
+
+Before performing the MPC, I transformed the coordinates to vehicle coordinates.
+
+Then, I polyfit the waypoints to calculate the coefficents of the curve. I choose the 3rd-degree curve to represent the route.
+
+### Model Predictive Control with Latency
+
+I've taken the latency into account by predicting the future state of the vehicle using the velocity, psi angle, x position, position of the car using the MPC equations. See line 109 to line 116 in main.cpp.
 
 ## Dependencies
 
