@@ -9,6 +9,7 @@ Self-Driving Car Engineer Nanodegree Program
  * The state includes the x position, y position, psi angle, velocity, cross track error and psi error.
  * The actuators include the throttle(-1,stand for full breaking, to 1, stand for full accelerating) and steering(-25 degrees to 25 degrees).
  * The update equations for the model:
+
      '''
      x_[t+1] = x[t] + v[t] * cos(psi[t]) * dt
      y_[t+1] = y[t] + v[t] * sin(psi[t]) * dt
